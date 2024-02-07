@@ -10,24 +10,29 @@
     <div class="container">
       <h1>World Clock</h1>
 
-      <select name="" id="">
+      <select name="selection" id="selection">
         <option>Select a city</option>
-        <option>Melbourne</option>
-        <option>Manila</option>
-        <option>Korea</option>
+        <option value="Australia/Melbourne">Melbourne 🇦🇺</option>
+        <option value="Asia/Manila">Manila 🇵🇭</option>
+        <option value="America/New_York">New York 🇺🇸</option>
+        <option value="Asia/Seoul">Seoul 🇰🇷</option>
+        <option value="Europe/London">London 🇬🇧</option>
       </select>
 
-        <div>
-          <h2>Melbourne 🇦🇺</h2>
-          <div class="date">February 05 2024</div>
       <div class="cities">
+        <div class="city" id="currentCity">
+          <div>
+            <h2 id="currentCityHeading"></h2>
+            <div class="date"></div>
+          </div>
+          <div class="time"></div>
         </div>
-        <div class="time">5:34:35 <small>PM</small></div>
-      </div>
-      <div class="city">
-        <div>
-          <h2>Manila 🇵🇭</h2>
-          <div class="date">February 05 2024</div>
+        <div class="city" id="selectedCity">
+          <div>
+            <h2 id="selectedCityHeading"></h2>
+            <div class="date"></div>
+          </div>
+          <div class="time"></div>
         </div>
       </div>
     </div>
@@ -38,8 +43,6 @@
       >
     </footer>
     <script src="javascript/index.js"></script>
-
-
 
   </body>
 </html>
