@@ -1,3 +1,27 @@
+function currentCity() {
+  let currentCityTimezone = moment.tz.guess();
+  let currentCityName = moment.tz.zone(currentCityTimezone).name;
+  let cityName = currentCityName.replace("_", " ").split("/")[1];
+
+  let currentCityElement = document.querySelector("#currentCity");
+  let currentCityHeadingElement = document.querySelector("#currentCityHeading");
+  let currentCityDateElement = currentCityElement.querySelector(".date");
+  let currentCityTimeElement = currentCityElement.querySelector(".time");
+
+  currentCityHeadingElement.innerHTML = cityName;
+  currentCityDateElement.innerHTML = moment()
+    .tz(currentCityTimezone)
+    .format("MMMM DD YYYY");
+  currentCityTimeElement.innerHTML = `${moment()
+    .tz(currentCityTimezone)
+    .format("h:mm:ss")} <small>${moment()
+    .tz(currentCityTimezone)
+    .format("A")}</small>`;
+}
+
+currentCity();
+setInterval(currentCity, 1000);
+
 function updateCity(event) {
   let selectedCity = event.target.value;
   let selectedCityName = selectedCity.replace("_", " ").split("/")[1];
