@@ -23,6 +23,7 @@ currentCity();
 setInterval(currentCity, 1000);
 
 function updateCity(event) {
+  clearInterval(timeInterval);
   let selectedCity = event.target.value;
   let selectedCityName = selectedCity.replace("_", " ").split("/")[1];
   let selectedHeadingElement = document.querySelector("#selectedCityHeading");
@@ -30,7 +31,7 @@ function updateCity(event) {
   let selectedCityDateElement = selectedCityElement.querySelector(".date");
   let selectedCityTimeElement = selectedCityElement.querySelector(".time");
 
-  setInterval(() => {
+  timeInterval = setInterval(() => {
     let selectedCityTimeZone = moment().tz(selectedCity);
     selectedCityDateElement.innerHTML =
       selectedCityTimeZone.format("MMMM DD YYYY");
@@ -41,6 +42,7 @@ function updateCity(event) {
 
   selectedHeadingElement.innerHTML = selectedCityName;
 }
+let timeInterval = ' ';
 
 let selectElement = document.querySelector("#selection");
 selectElement.addEventListener("change", updateCity);
