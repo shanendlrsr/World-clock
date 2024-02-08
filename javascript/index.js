@@ -26,23 +26,26 @@ function updateCity(event) {
   clearInterval(timeInterval);
   let selectedCity = event.target.value;
   let selectedCityName = selectedCity.replace("_", " ").split("/")[1];
-  let selectedHeadingElement = document.querySelector("#selectedCityHeading");
-  let selectedCityElement = document.querySelector("#selectedCity");
-  let selectedCityDateElement = selectedCityElement.querySelector(".date");
-  let selectedCityTimeElement = selectedCityElement.querySelector(".time");
+  let selectedCityElement = document.querySelector(".cities");
 
   timeInterval = setInterval(() => {
     let selectedCityTimeZone = moment().tz(selectedCity);
-    selectedCityDateElement.innerHTML =
-      selectedCityTimeZone.format("MMMM DD YYYY");
-    selectedCityTimeElement.innerHTML = `${selectedCityTimeZone.format(
-      "h:mm:ss"
-    )} <small>${selectedCityTimeZone.format("A")}<small>`;
+    selectedCityElement.innerHTML = `
+        <div class="city">
+          <div>
+            <h2>${selectedCityName}</h2>
+            <div class="date">${selectedCityTimeZone.format(
+              "MMMM DD YYYY"
+            )}</div>
+          </div>
+          <div class="time">${selectedCityTimeZone.format(
+            "h:mm:ss"
+          )} <small>${selectedCityTimeZone.format("A")}<small></div>
+        </div>
+      </div>`;
   }, 1000);
-
-  selectedHeadingElement.innerHTML = selectedCityName;
 }
-let timeInterval = ' ';
+let timeInterval = " ";
 
 let selectElement = document.querySelector("#selection");
 selectElement.addEventListener("change", updateCity);
