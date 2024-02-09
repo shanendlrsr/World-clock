@@ -62,7 +62,7 @@ function updateCity(event) {
   </div>`;
   }, 1000);
 
-  homepageElement.innerHTML = `<a href="/"> << Back to Current Location</a>`;
+  homepageElement.innerHTML = `<a href="/"> << Back to homepage</a>`;
 }
 
 let timeInterval = "";

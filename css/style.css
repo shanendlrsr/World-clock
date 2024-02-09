@@ -82,6 +82,10 @@ h2 {
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
 }
 
+.homepage a{
+    text-decoration: none;
+}
+
 footer {
   text-align: center;
   font-size: 16px;
