@@ -26,6 +26,7 @@
       <header>
         <select name="selection" id="selection">
           <option>Select a city</option>
+          <option value="current">Current location 📍</option>
           <option value="Australia/Melbourne">Melbourne 🇦🇺</option>
           <option value="Asia/Manila">Manila 🇵🇭</option>
           <option value="America/New_York">New York 🇺🇸</option>
@@ -35,26 +36,36 @@
       </header>
 
       <div class="cities">
-        <div class="city" id="currentCity">
+        <div class="city" id="melbourne">
           <div>
-            <h2 id="currentCityHeading"></h2>
+            <h2>Melbourne</h2>
             <div class="date"></div>
           </div>
           <div class="time"></div>
         </div>
-        <div class="city" id="selectedCity">
+        <div class="city" id="manila">
           <div>
-            <h2 id="selectedCityHeading"></h2>
+            <h2>Manila</h2>
+            <div class="date"></div>
+          </div>
+          <div class="time"></div>
+        </div>
+        <div class="city" id="newyork">
+          <div>
+            <h2>New York</h2>
             <div class="date"></div>
           </div>
           <div class="time"></div>
         </div>
       </div>
+      <div class="homepage"></div>
 
       <footer>
-        This project was built by <a href="https://github.com/shanendlrsr" target="_blank">
+        This project was built by
+        <a href="https://github.com/shanendlrsr" target="_blank">
           Shanen Del Rosario</a
-        > and is open sourced on
+        >
+        and is open sourced on
         <a href="https://github.com/shanendlrsr/World-clock" target="_blank"
           >GitHub</a
         >

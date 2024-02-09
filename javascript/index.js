@@ -1,48 +1,71 @@
-function currentCity() {
-  let currentCityTimezone = moment.tz.guess();
-  let currentCityName = moment.tz.zone(currentCityTimezone).name;
-  let cityName = currentCityName.replace("_", " ").split("/")[1];
+function defaultCities() {
+  //Melbourne
+  let melbourneCityTimezone = moment().tz("Australia/Melbourne");
+  let melbourneCityElement = document.querySelector("#melbourne");
+  let melbourneCityDateElement = melbourneCityElement.querySelector(".date");
+  let melbourneCityTimeElement = melbourneCityElement.querySelector(".time");
 
-  let currentCityElement = document.querySelector("#currentCity");
-  let currentCityHeadingElement = document.querySelector("#currentCityHeading");
-  let currentCityDateElement = currentCityElement.querySelector(".date");
-  let currentCityTimeElement = currentCityElement.querySelector(".time");
+  melbourneCityDateElement.innerHTML =
+    melbourneCityTimezone.format("MMMM DD YYYY");
+  melbourneCityTimeElement.innerHTML = `${melbourneCityTimezone.format(
+    "h:mm:ss"
+  )} <small>${melbourneCityTimezone.format("A")}</small>`;
 
-  currentCityHeadingElement.innerHTML = cityName;
-  currentCityDateElement.innerHTML = moment()
-    .tz(currentCityTimezone)
-    .format("MMMM DD YYYY");
-  currentCityTimeElement.innerHTML = `${moment()
-    .tz(currentCityTimezone)
-    .format("h:mm:ss")} <small>${moment()
-    .tz(currentCityTimezone)
-    .format("A")}</small>`;
+  //Manila
+  let manilaCityTimezone = moment().tz("Asia/Manila");
+  let manilaCityElement = document.querySelector("#manila");
+  let manilaCityDateElement = manilaCityElement.querySelector(".date");
+  let manilaCityTimeElement = manilaCityElement.querySelector(".time");
+
+  manilaCityDateElement.innerHTML = manilaCityTimezone.format("MMMM DD YYYY");
+  manilaCityTimeElement.innerHTML = `${manilaCityTimezone.format(
+    "h:mm:ss"
+  )} <small>${manilaCityTimezone.format("A")}</small>`;
+
+  //New York
+  let newyorkCityTimezone = moment().tz("America/New_York");
+  let newyorkCityElement = document.querySelector("#newyork");
+  let newyorkCityDateElement = newyorkCityElement.querySelector(".date");
+  let newyorkCityTimeElement = newyorkCityElement.querySelector(".time");
+
+  newyorkCityDateElement.innerHTML = newyorkCityTimezone.format("MMMM DD YYYY");
+  newyorkCityTimeElement.innerHTML = `${newyorkCityTimezone.format(
+    "h:mm:ss"
+  )} <small>${newyorkCityTimezone.format("A")}</small>`;
 }
 
-currentCity();
-setInterval(currentCity, 1000);
+defaultCities();
+setInterval(defaultCities, 1000);
 
 function updateCity(event) {
   clearInterval(timeInterval);
   let selectedCity = event.target.value;
+  if (selectedCity === "current") {
+    selectedCity = moment.tz.guess();
+  }
   let selectedCityName = selectedCity.replace("_", " ").split("/")[1];
-  let selectedHeadingElement = document.querySelector("#selectedCityHeading");
-  let selectedCityElement = document.querySelector("#selectedCity");
-  let selectedCityDateElement = selectedCityElement.querySelector(".date");
-  let selectedCityTimeElement = selectedCityElement.querySelector(".time");
+  let citiesElement = document.querySelector(".cities");
+  let homepageElement = document.querySelector(".homepage");
 
   timeInterval = setInterval(() => {
     let selectedCityTimeZone = moment().tz(selectedCity);
-    selectedCityDateElement.innerHTML =
-      selectedCityTimeZone.format("MMMM DD YYYY");
-    selectedCityTimeElement.innerHTML = `${selectedCityTimeZone.format(
-      "h:mm:ss"
-    )} <small>${selectedCityTimeZone.format("A")}<small>`;
+    citiesElement.innerHTML = `<div class="city">
+            <div>
+              <h2>${selectedCityName}</h2>
+              <div class="date">${selectedCityTimeZone.format(
+                "MMMM DD YYYY"
+              )}</div>
+            </div>
+            <div class="time">${selectedCityTimeZone.format(
+              "h:mm:ss"
+            )} <small>${selectedCityTimeZone.format("A")}</small></div>
+  </div>`;
   }, 1000);
 
-  selectedHeadingElement.innerHTML = selectedCityName;
+  homepageElement.innerHTML = `<a href="index.html"> << Back to Current Location</a>`;
 }
-let timeInterval = ' ';
+
+let timeInterval = "";
 
 let selectElement = document.querySelector("#selection");
 selectElement.addEventListener("change", updateCity);
